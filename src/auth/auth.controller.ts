@@ -4,7 +4,7 @@ import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
 import {IUserCreateFields} from "../user/interfaces";
-import {FacebookGuard, GoogleGuard, LoginGuard} from "../common/guards";
+import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard} from "../common/guards";
 import {UserEntity} from "../user/user.entity";
 import {UserService} from "../user/user.service";
 
@@ -24,13 +24,18 @@ export class AuthController {
 					}
 				</script>
         <body>
-          ${JSON.stringify(user)}
+          <p>logged in as ${JSON.stringify(user)}</p>
           <form action="/auth/login" method="post">
             <input type="email" name="email" />
             <input type="password" name="password" />
             <input type="submit" />
           </form>
-          <a href="/auth/google" onClick="return handleclick(this)">or login with google</a>
+          <p>or login with other providers</p>
+          <ul>
+            <li><a href="/auth/google" onClick="return handleclick(this)">google</a></li>
+            <li><a href="/auth/facebook" onClick="return handleclick(this)">facebook</a></li>
+            <li><a href="/auth/onelogin" onClick="return handleclick(this)">onelogin</a></li>
+          </ul>
         </body>
       </html>
     `;
@@ -61,19 +66,19 @@ export class AuthController {
   @Public()
   @Get("/google")
   @UseGuards(GoogleGuard)
-  googleLogin(): void {
+  public googleLogin(): void {
     // initiates the Google OAuth2 login flow
   }
 
   @Public()
   @Get("/google/callback")
   @UseGuards(GoogleGuard)
-  googleLoginCallback(@User() user: UserEntity): string {
+  public googleLoginCallback(@User() user: UserEntity): string {
     return `
       <html>
       	<script>
 					function handleLoad() {
-					  alert(${JSON.stringify(user)});
+					  alert('${JSON.stringify(user)}');
 						window.close();
 					}
 				</script>
@@ -85,19 +90,43 @@ export class AuthController {
   @Public()
   @Get("/facebook")
   @UseGuards(FacebookGuard)
-  facebookLogin(): void {
+  public facebookLogin(): void {
     // initiates the Google OAuth2 login flow
   }
 
   @Public()
   @Get("/facebook/callback")
   @UseGuards(FacebookGuard)
-  facebookLoginCallback(@User() user: UserEntity): string {
+  public facebookLoginCallback(@User() user: UserEntity): string {
     return `
       <html>
       	<script>
 					function handleLoad() {
-					  alert(${JSON.stringify(user)});
+					  alert('${JSON.stringify(user)}');
+						window.close();
+					}
+				</script>
+        <body onload="handleLoad()" />
+      </html>
+    `;
+  }
+
+  @Public()
+  @UseGuards(OneloginGuard)
+  @Get("/onelogin")
+  public oneloginLogin(): void {
+    // initiates the OneLogin login flow
+  }
+
+  @Public()
+  @UseGuards(OneloginGuard)
+  @Get("/onelogin/callback")
+  public oneloginLoginCallback(@User() user: UserEntity): string {
+    return `
+      <html>
+      	<script>
+					function handleLoad() {
+					  alert('${JSON.stringify(user)}');
 						window.close();
 					}
 				</script>
