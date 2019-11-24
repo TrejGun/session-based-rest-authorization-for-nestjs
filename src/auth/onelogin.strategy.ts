@@ -1,6 +1,7 @@
 import {Injectable, UnauthorizedException} from "@nestjs/common";
 import {PassportStrategy} from "@nestjs/passport";
 import {Strategy, Client, UserinfoResponse, TokenSet} from "openid-client";
+
 import {UserService} from "../user/user.service";
 import {UserEntity} from "../user/user.entity";
 
@@ -14,7 +15,7 @@ export class OneloginStrategy extends PassportStrategy(Strategy, "onelogin") {
       params: {
         // eslint-disable-next-line @typescript-eslint/camelcase
         redirect_uri: process.env.ONELOGIN_REDIRECT_URI,
-        scope: process.env.ONELOGIN_SCOPE,
+        scope: "openid profile email",
       },
       passReqToCallback: false,
       usePKCE: false,

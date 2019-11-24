@@ -24,13 +24,18 @@ export class AuthController {
 					}
 				</script>
         <body>
-          ${JSON.stringify(user)}
+          <p>logged in as ${JSON.stringify(user)}</p>
           <form action="/auth/login" method="post">
             <input type="email" name="email" />
             <input type="password" name="password" />
             <input type="submit" />
           </form>
-          <a href="/auth/google" onClick="return handleclick(this)">or login with google</a>
+          <p>or login with other providers</p>
+          <ul>
+            <li><a href="/auth/google" onClick="return handleclick(this)">google</a></li>
+            <li><a href="/auth/facebook" onClick="return handleclick(this)">facebook</a></li>
+            <li><a href="/auth/onelogin" onClick="return handleclick(this)">onelogin</a></li>
+          </ul>
         </body>
       </html>
     `;
@@ -73,7 +78,7 @@ export class AuthController {
       <html>
       	<script>
 					function handleLoad() {
-					  alert(${JSON.stringify(user)});
+					  alert('${JSON.stringify(user)}');
 						window.close();
 					}
 				</script>
@@ -97,7 +102,7 @@ export class AuthController {
       <html>
       	<script>
 					function handleLoad() {
-					  alert(${JSON.stringify(user)});
+					  alert('${JSON.stringify(user)}');
 						window.close();
 					}
 				</script>
@@ -108,15 +113,25 @@ export class AuthController {
 
   @Public()
   @UseGuards(OneloginGuard)
-  @Get("onelogin")
+  @Get("/onelogin")
   public oneloginLogin(): void {
     // initiates the OneLogin login flow
   }
 
   @Public()
   @UseGuards(OneloginGuard)
-  @Get("onelogin/callback")
-  public oneloginLoginCallback(@User() user: UserEntity): UserEntity {
-    return user;
+  @Get("/onelogin/callback")
+  public oneloginLoginCallback(@User() user: UserEntity): string {
+    return `
+      <html>
+      	<script>
+					function handleLoad() {
+					  alert('${JSON.stringify(user)}');
+						window.close();
+					}
+				</script>
+        <body onload="handleLoad()" />
+      </html>
+    `;
   }
 }
