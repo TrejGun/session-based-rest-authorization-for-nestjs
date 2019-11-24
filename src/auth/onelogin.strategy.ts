@@ -10,11 +10,11 @@ export class OneloginStrategy extends PassportStrategy(Strategy, "onelogin") {
 
   constructor(private readonly userService: UserService, client: Client) {
     super({
-      client: client,
+      client,
       params: {
         // eslint-disable-next-line @typescript-eslint/camelcase
-        redirect_uri: process.env.AUTH_ONELOGIN_REDIRECT_URI,
-        scope: process.env.AUTH_ONELOGIN_SCOPE,
+        redirect_uri: process.env.ONELOGIN_REDIRECT_URI,
+        scope: process.env.ONELOGIN_SCOPE,
       },
       passReqToCallback: false,
       usePKCE: false,
