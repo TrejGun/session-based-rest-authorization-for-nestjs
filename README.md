@@ -5,7 +5,14 @@ This is a code sample for my [article](https://trejgun.github.io/articles/sessio
 
 ## Installation
 
-I assume you have node, yarn/npm, postgres, redis and configured google/facebook account
+I assume you have node, yarn/npm, postgres, redis 
+otherwise you can use docker 
+
+```shell script
+docker-compose up --build
+```
+ 
+Also you have to have configured google/facebook account
 
 First of all you have to download dependencies
 ```bash
