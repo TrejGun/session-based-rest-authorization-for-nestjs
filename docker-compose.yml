@@ -17,3 +17,36 @@ services:
       - "6379:6379"
     sysctls:
       net.core.somaxconn: "65535"
+
+  server:
+    image: nestjs-session-example
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    command: npm start
+    environment:
+      NODE_ENV: development
+      HOST: "0.0.0.0"
+      PORT: 3000
+      POSTGRES_URL: postgres://postgres:password@postgres/postgres
+      REDIS_URL: redis://redis:6379/10
+      SESSION_SECRET_KEY: keyboard_cat
+      GOOGLE_CLIENT_ID: XXX
+      GOOGLE_CLIENT_SECRET: XXX
+      GOOGLE_CALLBACK_URL: http://localhost:3000/auth/google/callback
+      FACEBOOK_CLIENT_ID: XXX
+      FACEBOOK_CLIENT_SECRET: XXX
+      FACEBOOK_CALLBACK_URL: http://localhost:3000/auth/facebook/callback
+      ONELOGIN_SUBDOMAIN: XXX
+      ONELOGIN_CLIENT_ID: XXX
+      ONELOGIN_CLIENT_SECRET: XXX
+      ONELOGIN_REDIRECT_URI: http://localhost:3000/auth/onelogin/callback
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - postgres
+      - redis
+

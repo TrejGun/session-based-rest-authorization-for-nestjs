@@ -23,7 +23,7 @@
     "typeorm": "0.2.20",
     "typeorm-naming-strategies": "1.1.0"
   },
-  "description": "",
+  "description": "session based authorization for nest.js",
   "devDependencies": {
     "@nestjs/testing": "6.6.3",
     "@trejgun/eslint-config": "0.0.1",
@@ -62,7 +62,7 @@
     "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "prebuild": "rm -rf dist/",
     "start": "NODE_ENV=development tsc-watch --onSuccess \"node .\" --onFailure \"echo Compilation Failed\"",
-    "start:prod": "NODE_ENV=production node .",
+    "prod": "NODE_ENV=production node .",
     "test": "NODE_ENV=test jest --config jest.config.json",
     "typeorm": "NODE_ENV=development ts-node ./node_modules/.bin/typeorm --config src/ormconfig.ts"
   },

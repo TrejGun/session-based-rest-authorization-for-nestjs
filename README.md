@@ -1,21 +1,25 @@
-# Nest Authorization
+# Session based authorization from Nest.js
 
 This is a code sample for my [article](https://trejgun.github.io/articles/session-based-authorization-for-nestjs)
 
+## Optional
 
-## Installation
+This example shows how to setup Nest.js authorization various 3rd party providers
 
-I assume you have node, yarn/npm, postgres, redis;
-
-Otherwise you can use docker 
-
-```shell script
-docker-compose up --build
-```
+ - google
+ - facebood
+ - onelogin
  
-Also you have to have configured google/facebook accounts
+you have to have then configured in advance
+only local provider works out of the box
 
+
+## Manual installation
+
+I assume you have node, yarn/npm, postgres, redis
+ 
 First of all you have to download dependencies
+
 ```bash
 npm i
 ```
@@ -33,12 +37,23 @@ npm run start
 or in production mode
 ```bash
 npm run build
-npm run start:prod
+npm run prod
+```
+
+## Docker
+
+Otherwise you can use docker 
+
+```shell script
+docker-compose up --build
 ```
 
 ## Usage
 
-You can log in to the application using trejgun@gmail.com/My5up3r5tr0ngP@55w0rd 
-on http://localhost:3000/auth/login 
+Navigate to http://localhost:3000/auth/login 
+
+log in using **trejgun@gmail.com/My5up3r5tr0ngP@55w0rd**
+
+or picking provider name from list
 
 then navigate to http://localhost:3000/users/profile
