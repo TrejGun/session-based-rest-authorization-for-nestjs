@@ -31,9 +31,11 @@ declare global {
       FACEBOOK_CLIENT_SECRET: string;
       FACEBOOK_CALLBACK_URL: string;
 
-      ONELOGIN_SUBDOMAIN: string;
       ONELOGIN_CLIENT_ID: string;
       ONELOGIN_CLIENT_SECRET: string;
+      ONELOGIN_REDIRECT_URI: string;
+      ONELOGIN_SUBDOMAIN: string;
+      ONELOGIN_SCOPE: string;
     }
   }
 }
