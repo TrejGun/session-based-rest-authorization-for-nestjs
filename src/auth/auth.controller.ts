@@ -4,7 +4,7 @@ import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
 import {IUserCreateFields} from "../user/interfaces";
-import {FacebookGuard, GoogleGuard, LoginGuard} from "../common/guards";
+import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard} from "../common/guards";
 import {UserEntity} from "../user/user.entity";
 import {UserService} from "../user/user.service";
 
@@ -107,14 +107,14 @@ export class AuthController {
   }
 
   @Public()
-  @UseGuards(LoginGuard)
-  @Get("onelogin/login")
+  @UseGuards(OneloginGuard)
+  @Get("onelogin")
   public oneloginLogin(): void {
     // initiates the OneLogin login flow
   }
 
   @Public()
-  @UseGuards(LoginGuard)
+  @UseGuards(OneloginGuard)
   @Get("onelogin/callback")
   public oneloginLoginCallback(@User() user: UserEntity): UserEntity {
     return user;
