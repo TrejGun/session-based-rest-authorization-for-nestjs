@@ -1,5 +1,5 @@
-import {Request} from "express";
-import {Body, Controller, Get, Post, Req, UseGuards} from "@nestjs/common";
+import {Request, Response} from "express";
+import {Body, Controller, Get, Post, Req, Res, HttpCode, UseGuards} from "@nestjs/common";
 import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
@@ -49,9 +49,14 @@ export class AuthController {
   }
 
   @Public()
+  @HttpCode(204)
   @Get("/logout")
-  public logout(@Req() req: Request): void {
+  public logout(@Req() req: Request, @Res() res: Response): void {
+    // @ts-ignore
+    req.session.destroy();
     req.logout();
+    res.clearCookie("nest");
+    res.send("");
   }
 
   @Public()
