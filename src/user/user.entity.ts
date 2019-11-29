@@ -12,6 +12,9 @@ export class UserEntity extends BaseEntity implements IUser {
   @Column({type: "varchar", select: false})
   public password: string;
 
+  @Column({type: "varchar", select: false, nullable: true})
+  public biometricPublicKey?: string;
+
   @Column({
     type: "enum",
     enum: UserRole,

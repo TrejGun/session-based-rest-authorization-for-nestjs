@@ -4,7 +4,7 @@ import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
 import {IUserCreateFields} from "../user/interfaces";
-import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard} from "../common/guards";
+import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard, BiometricGuard} from "../common/guards";
 import {UserEntity} from "../user/user.entity";
 import {UserService} from "../user/user.service";
 
@@ -65,6 +65,14 @@ export class AuthController {
     const user = await this.userService.create(data);
     // @ts-ignore
     await promisify(req.logIn.bind(req))(user);
+    return user;
+  }
+
+  @Public()
+  @UseGuards(BiometricGuard)
+  @HttpCode(200)
+  @Post("/biometric")
+  public biometric(@User() user: UserEntity): UserEntity {
     return user;
   }
 

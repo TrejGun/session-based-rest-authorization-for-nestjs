@@ -22,13 +22,12 @@ export class UserService {
     return this.userEntityRepository.findAndCount();
   }
 
-  public async getByCredentials(email: string, password: string): Promise<UserEntity | undefined> {
-    return this.userEntityRepository.findOne({
-      where: {
-        email,
-        password: this.createPasswordHash(password, email),
-      },
-    });
+  public findForAuth(email: string, column: string): Promise<UserEntity | undefined> {
+    return this.userEntityRepository
+      .createQueryBuilder("user")
+      .addSelect(`user.${column}`)
+      .where("user.email = :email", {email})
+      .getOne();
   }
 
   public async create(data: IUserCreateFields): Promise<UserEntity> {
@@ -50,7 +49,7 @@ export class UserService {
     return user;
   }
 
-  private createPasswordHash(password: string, salt: string): string {
+  public createPasswordHash(password: string, salt: string): string {
     return createHash("sha256")
       .update(password)
       .update(salt)

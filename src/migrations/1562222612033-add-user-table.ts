@@ -34,6 +34,11 @@ export class AddUserTable1562222612033 implements MigrationInterface {
           type: "varchar",
         },
         {
+          name: "biometric_public_key",
+          type: "varchar",
+          isNullable: true,
+        },
+        {
           name: "roles",
           type: "test.user_role_enum",
           isArray: true,
