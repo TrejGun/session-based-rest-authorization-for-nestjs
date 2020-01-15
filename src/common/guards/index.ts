@@ -1,4 +1,5 @@
 export * from "./biometric";
+export * from "./ldap";
 export * from "./local";
 export * from "./login";
 export * from "./google";

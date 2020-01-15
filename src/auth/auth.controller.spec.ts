@@ -4,13 +4,13 @@ import {PassportModule} from "@nestjs/passport";
 
 import {AuthController} from "./auth.controller";
 import {UserModule} from "../user/user.module";
-import {BiometricStrategy, FacebookStrategy, GoogleStrategy, LocalStrategy} from "./strategies";
+import {BiometricStrategy, FacebookStrategy, GoogleStrategy, LdapStrategy, LocalStrategy} from "./strategies";
 import {OneloginStrategyFactory} from "./onelogin.factory";
 import {SessionSerializer} from "./session.serializer";
 import ormconfig from "../ormconfig";
 
 
-describe("AuthService", () => {
+describe("AuthController", () => {
   let servcontrollerce: AuthController;
 
   beforeEach(async () => {
@@ -22,6 +22,7 @@ describe("AuthService", () => {
         GoogleStrategy,
         LocalStrategy,
         OneloginStrategyFactory,
+        LdapStrategy,
         SessionSerializer,
       ],
       controllers: [AuthController],

@@ -5,7 +5,7 @@ import {UserModule} from "../user/user.module";
 import {SessionSerializer} from "./session.serializer";
 import {AuthController} from "./auth.controller";
 import {OneloginStrategyFactory} from "./onelogin.factory";
-import {BiometricStrategy, FacebookStrategy, GoogleStrategy, LocalStrategy} from "./strategies";
+import {BiometricStrategy, FacebookStrategy, GoogleStrategy, LdapStrategy, LocalStrategy} from "./strategies";
 
 @Module({
   imports: [UserModule, PassportModule],
@@ -15,6 +15,7 @@ import {BiometricStrategy, FacebookStrategy, GoogleStrategy, LocalStrategy} from
     GoogleStrategy,
     LocalStrategy,
     OneloginStrategyFactory,
+    LdapStrategy,
     SessionSerializer,
   ],
   controllers: [AuthController],

@@ -4,7 +4,7 @@ import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
 import {IUserCreateFields} from "../user/interfaces";
-import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard, BiometricGuard} from "../common/guards";
+import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard, BiometricGuard, LdapGuard} from "../common/guards";
 import {UserEntity} from "../user/user.entity";
 import {UserService} from "../user/user.service";
 
@@ -146,5 +146,13 @@ export class AuthController {
         <body onload="handleLoad()" />
       </html>
     `;
+  }
+
+  @Public()
+  @HttpCode(200)
+  @UseGuards(LdapGuard)
+  @Post("/ldap")
+  public ldap(): void {
+    // initiates the Ldap login flow
   }
 }
