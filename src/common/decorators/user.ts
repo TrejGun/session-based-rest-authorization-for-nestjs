@@ -1,5 +1,7 @@
-import {Request} from "express";
-import {createParamDecorator} from "@nestjs/common";
+import {createParamDecorator, ExecutionContext} from "@nestjs/common";
 
-// tslint:disable-next-line:variable-name
-export const User = createParamDecorator((_data: any, req: Request) => req.user);
+
+export const User = createParamDecorator((_data: unknown, ctx: ExecutionContext) => {
+  const request = ctx.switchToHttp().getRequest();
+  return request.user;
+});
