@@ -1,9 +1,15 @@
 {
   "extends": ["config:base"],
-  "automerge": true,
-  "automergeType": "pr",
-  "reviewers": ["trejgun"],
-  "major": {
-    "automerge": false
-  }
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "updateTypes": ["major"],
+      "automerge": false
+    }
+  ],
+  "major": {"masterIssueApproval": true},
+  "requiredStatusChecks": null
 }
