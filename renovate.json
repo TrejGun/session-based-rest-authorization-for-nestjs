@@ -1,15 +1,3 @@
 {
-  "extends": ["config:base"],
-  "packageRules": [
-    {
-      "updateTypes": ["minor", "patch"],
-      "automerge": true
-    },
-    {
-      "updateTypes": ["major"],
-      "automerge": false
-    }
-  ],
-  "major": {"masterIssueApproval": true},
-  "requiredStatusChecks": null
+  "extends": ["github>trejgun/renovate-config"]
 }
