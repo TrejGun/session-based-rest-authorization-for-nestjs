@@ -36,7 +36,7 @@ async function bootstrap(): Promise<void> {
   app.use(passport.session());
 
   const options = new DocumentBuilder()
-    .setTitle("jwt-based-authorization-for-nestjs")
+    .setTitle("session-based-authorization-for-nestjs")
     .setDescription("API description")
     .setVersion("1.0")
     .build();
