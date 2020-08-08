@@ -12,7 +12,7 @@
     "@nestjs/typeorm": "7.1.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
-    "connect-redis": "4.0.3",
+    "connect-redis": "4.0.4",
     "dotenv": "8.2.0",
     "express": "4.17.1",
     "express-session": "1.16.2",
