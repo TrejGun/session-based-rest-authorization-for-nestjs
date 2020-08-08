@@ -5,6 +5,9 @@ import ormconfig from "./ormconfig";
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
-    return ormconfig;
+    return {
+      ...ormconfig,
+      keepConnectionAlive: process.env.NODE_ENV === "test",
+    };
   }
 }

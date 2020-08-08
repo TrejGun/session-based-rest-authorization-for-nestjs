@@ -5,7 +5,7 @@ export class AddUserTable1562222612033 implements MigrationInterface {
   public tableName = "test.user";
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable(this.tableName);
+    await queryRunner.dropTable("test.user");
     await queryRunner.query("DROP TYPE test.user_role_enum;");
   }
 
@@ -18,7 +18,7 @@ export class AddUserTable1562222612033 implements MigrationInterface {
     `);
 
     const table = new Table({
-      name: this.tableName,
+      name: "test.user",
       columns: [
         {
           name: "id",

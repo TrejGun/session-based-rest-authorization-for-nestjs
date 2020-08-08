@@ -1,15 +1,13 @@
 import "./env";
-// eslint-disable-next-line import/default
+import {NestFactory} from "@nestjs/core";
+import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
+import {NestExpressApplication} from "@nestjs/platform-express";
 import session from "express-session";
-// eslint-disable-next-line import/default
 import passport from "passport";
 import connectRedis from "connect-redis";
 import * as redis from "redis";
-import {NestFactory, Reflector} from "@nestjs/core";
-import {NestExpressApplication} from "@nestjs/platform-express";
 
 import {AppModule} from "./app.module";
-import {LocalGuard, RolesGuard} from "./common/guards";
 
 
 async function bootstrap(): Promise<void> {
@@ -34,15 +32,16 @@ async function bootstrap(): Promise<void> {
     }),
   );
 
-  // eslint-disable-next-line import/namespace
   app.use(passport.initialize());
-  // eslint-disable-next-line import/namespace
   app.use(passport.session());
 
-  const reflector = app.get(Reflector);
-  void reflector;
-  app.useGlobalGuards(new LocalGuard(reflector));
-  app.useGlobalGuards(new RolesGuard(reflector));
+  const options = new DocumentBuilder()
+    .setTitle("jwt-based-authorization-for-nestjs")
+    .setDescription("API description")
+    .setVersion("1.0")
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup("swagger", app, document);
 
   await app.listen(process.env.PORT, process.env.HOST, () => {
     // eslint-disable-next-line no-console
@@ -50,4 +49,4 @@ async function bootstrap(): Promise<void> {
   });
 }
 
-bootstrap();
+void bootstrap();

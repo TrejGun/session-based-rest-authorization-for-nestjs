@@ -3,10 +3,10 @@ import {Body, Controller, Get, Post, Req, Res, HttpCode, UseGuards} from "@nestj
 import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
-import {IUserCreateFields} from "../user/interfaces";
 import {LoginGuard, FacebookGuard, GoogleGuard, OneloginGuard, BiometricGuard} from "../common/guards";
 import {UserEntity} from "../user/user.entity";
 import {UserService} from "../user/user.service";
+import {UserCreateSchema} from "../user/schemas";
 
 @Controller("/auth")
 export class AuthController {
@@ -61,7 +61,7 @@ export class AuthController {
 
   @Public()
   @Get("/signup")
-  public async signup(@Body() data: IUserCreateFields, @Req() req: Request): Promise<UserEntity> {
+  public async signup(@Body() data: UserCreateSchema, @Req() req: Request): Promise<UserEntity> {
     const user = await this.userService.create(data);
     // @ts-ignore
     await promisify(req.logIn.bind(req))(user);
