@@ -18,7 +18,7 @@
     "express-session": "1.17.1",
     "node-rsa": "1.1.1",
     "openid-client": "3.15.9",
-    "passport": "0.4.0",
+    "passport": "0.4.1",
     "passport-facebook": "3.0.0",
     "passport-google-oauth": "1.0.0",
     "passport-local": "1.0.0",
