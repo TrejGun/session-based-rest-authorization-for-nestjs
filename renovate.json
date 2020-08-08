@@ -1,3 +1,4 @@
 {
-  "extends": ["github>trejgun/renovate-config"]
+  "extends": ["github>trejgun/renovate-config"],
+  "renovateFork":true
 }
