@@ -22,7 +22,7 @@
     "passport-facebook": "3.0.0",
     "passport-google-oauth": "1.0.0",
     "passport-local": "1.0.0",
-    "pg": "8.3.0",
+    "pg": "8.3.2",
     "redis": "2.8.0",
     "rxjs": "6.6.2",
     "swagger-ui-express": "4.1.4",
