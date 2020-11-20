@@ -1,3 +1,4 @@
+import {Request} from "express";
 import {ExecutionContext, Injectable, CanActivate} from "@nestjs/common";
 import {Reflector} from "@nestjs/core";
 import {AuthGuard} from "@nestjs/passport";
@@ -15,7 +16,7 @@ export class LocalGuard extends AuthGuard("local") implements CanActivate {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest<Request>();
 
     return request.isAuthenticated();
   }

@@ -1,4 +1,5 @@
 import {Strategy} from "passport-facebook";
+import {Profile} from "passport";
 import {PassportStrategy} from "@nestjs/passport";
 import {Injectable, UnauthorizedException} from "@nestjs/common";
 
@@ -16,10 +17,10 @@ export class FacebookStrategy extends PassportStrategy(Strategy, "facebook") {
     });
   }
 
-  public async validate(_accessToken: string, _refreshToken: string, profile: any): Promise<UserEntity> {
-    const user = await this.userService.findOne({email: profile.emails[0].value});
-    if (user) {
-      return user;
+  public async validate(_accessToken: string, _refreshToken: string, profile: Profile): Promise<UserEntity> {
+    const userEntity = await this.userService.findOne({email: profile.emails![0].value});
+    if (userEntity) {
+      return userEntity;
     }
     throw new UnauthorizedException();
   }

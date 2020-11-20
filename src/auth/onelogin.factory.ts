@@ -13,11 +13,8 @@ export const OneloginStrategyFactory = {
       `https://${process.env.ONELOGIN_SUBDOMAIN}.onelogin.com/oidc/.well-known/openid-configuration`,
     );
     const client = new TrustIssuer.Client({
-      // eslint-disable-next-line @typescript-eslint/camelcase
       client_id: process.env.ONELOGIN_CLIENT_ID,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       client_secret: process.env.ONELOGIN_CLIENT_SECRET,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       token_endpoint_auth_method: "client_secret_post",
     });
     return new OneloginStrategy(userService, client);

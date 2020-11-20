@@ -1,6 +1,7 @@
+import {Request} from "express";
 import {CanActivate, ExecutionContext, Injectable} from "@nestjs/common";
 import {Reflector} from "@nestjs/core";
-import {UserRole} from "../../user/interfaces";
+import {IUser, UserRole} from "../../user/interfaces";
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -13,8 +14,8 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest<Request>();
 
-    return request.user.roles.some((role: UserRole) => !!roles.find(item => item === role));
+    return (request.user as IUser).roles.some((role: UserRole) => !!roles.find(item => item === role));
   }
 }

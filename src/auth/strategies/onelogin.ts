@@ -13,7 +13,6 @@ export class OneloginStrategy extends PassportStrategy(Strategy, "onelogin") {
     super({
       client,
       params: {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         redirect_uri: process.env.ONELOGIN_REDIRECT_URI,
         scope: "openid profile email",
       },
@@ -31,10 +30,10 @@ export class OneloginStrategy extends PassportStrategy(Strategy, "onelogin") {
       throw new UnauthorizedException();
     }
 
-    const user = await this.userService.findOne({email: userinfo.email});
+    const userEntity = await this.userService.findOne({email: userinfo.email});
 
-    if (user) {
-      return user;
+    if (userEntity) {
+      return userEntity;
     }
 
     throw new UnauthorizedException();

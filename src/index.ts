@@ -14,7 +14,6 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.use(
-    // @ts-ignore
     session({
       cookie: {
         path: "/",
@@ -26,7 +25,6 @@ async function bootstrap(): Promise<void> {
       name: "nest",
       resave: false,
       secret: process.env.SESSION_SECRET_KEY,
-      // @ts-ignore
       store: new (connectRedis(session))({client: redis.createClient(process.env.REDIS_URL)}),
       saveUninitialized: true,
     }),
