@@ -1,5 +1,6 @@
 {
   "extends": ["github>trejgun/renovate-config"],
   "requiredStatusChecks": null,
-  "renovateFork": true 
+  "renovateFork": true,
+  renovateFork=true
 }
