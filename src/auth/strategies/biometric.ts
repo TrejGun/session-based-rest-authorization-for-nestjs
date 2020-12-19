@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/named
 import {Strategy} from "passport-local";
 import {PassportStrategy} from "@nestjs/passport";
 import {Injectable, UnauthorizedException} from "@nestjs/common";
-// eslint-disable-next-line import/default
 import NodeRSA from "node-rsa";
 
 import {UserEntity} from "../../user/user.entity";
@@ -18,10 +16,9 @@ export class BiometricStrategy extends PassportStrategy(Strategy, "biometric") {
   }
 
   public async validate(email: string, signature: string): Promise<UserEntity> {
-    const userEntity = await this.userService.findForAuth(email, "biometricPublicKey");
+    const userEntity = await this.userService.findOne({email});
 
     if (!userEntity) {
-      // throw new NotFoundException();
       throw new UnauthorizedException();
     }
 
@@ -34,7 +31,6 @@ export class BiometricStrategy extends PassportStrategy(Strategy, "biometric") {
     const verified = signer.verify(Buffer.from(email), signature, "utf8", "base64");
 
     if (verified) {
-      delete userEntity.biometricPublicKey;
       return userEntity;
     }
 

@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named
 import {Strategy} from "passport-local";
 import {PassportStrategy} from "@nestjs/passport";
 import {Injectable, UnauthorizedException} from "@nestjs/common";
@@ -16,17 +15,9 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   public async validate(email: string, password: string): Promise<UserEntity> {
-    const userEntity = await this.userService.findForAuth(email, "password");
+    const userEntity = await this.userService.getByCredentials(email, password);
 
-    if (!userEntity) {
-      // throw new NotFoundException();
-      throw new UnauthorizedException();
-    }
-
-    const verified = userEntity.password === this.userService.createPasswordHash(password, email);
-
-    if (verified) {
-      delete userEntity.password;
+    if (userEntity) {
       return userEntity;
     }
 

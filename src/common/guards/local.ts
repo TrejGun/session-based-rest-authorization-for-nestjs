@@ -10,9 +10,10 @@ export class LocalGuard extends AuthGuard("local") implements CanActivate {
   }
 
   public canActivate(context: ExecutionContext): boolean {
-    const isPublic = this.reflector.get<boolean>("isPublic", context.getHandler());
+    const isPublicHandler = this.reflector.get<boolean>("isPublic", context.getHandler());
+    const isPublicClass = this.reflector.get<boolean>("isPublic", context.getClass());
 
-    if (isPublic) {
+    if (isPublicHandler || isPublicClass) {
       return true;
     }
 

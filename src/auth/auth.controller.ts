@@ -1,5 +1,16 @@
 import {Request, Response} from "express";
-import {Body, Controller, Get, Post, Req, Res, HttpCode, UseGuards} from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  HttpCode,
+  UseGuards,
+  ClassSerializerInterceptor,
+  UseInterceptors,
+} from "@nestjs/common";
 import {promisify} from "util";
 
 import {Public, User} from "../common/decorators";
@@ -8,11 +19,11 @@ import {UserEntity} from "../user/user.entity";
 import {UserService} from "../user/user.service";
 import {UserCreateSchema} from "../user/schemas";
 
+@Public()
 @Controller("/auth")
 export class AuthController {
   constructor(private readonly userService: UserService) {}
 
-  @Public()
   @Get("/login")
   public main(@User() user: UserEntity): string {
     return `
@@ -41,14 +52,13 @@ export class AuthController {
     `;
   }
 
-  @Public()
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(LoginGuard)
   @Post("/login")
   public login(@User() user: UserEntity): UserEntity {
     return user;
   }
 
-  @Public()
   @HttpCode(204)
   @Get("/logout")
   public logout(@Req() req: Request, @Res() res: Response): void {
@@ -59,7 +69,7 @@ export class AuthController {
     res.send("");
   }
 
-  @Public()
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get("/signup")
   public async signup(@Body() data: UserCreateSchema, @Req() req: Request): Promise<UserEntity> {
     const user = await this.userService.create(data);
@@ -68,7 +78,7 @@ export class AuthController {
     return user;
   }
 
-  @Public()
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(BiometricGuard)
   @HttpCode(200)
   @Post("/biometric")
@@ -76,14 +86,12 @@ export class AuthController {
     return user;
   }
 
-  @Public()
   @Get("/google")
   @UseGuards(GoogleGuard)
   public googleLogin(): void {
     // initiates the Google OAuth2 login flow
   }
 
-  @Public()
   @Get("/google/callback")
   @UseGuards(GoogleGuard)
   public googleLoginCallback(@User() user: UserEntity): string {
@@ -100,14 +108,12 @@ export class AuthController {
     `;
   }
 
-  @Public()
   @Get("/facebook")
   @UseGuards(FacebookGuard)
   public facebookLogin(): void {
     // initiates the Google OAuth2 login flow
   }
 
-  @Public()
   @Get("/facebook/callback")
   @UseGuards(FacebookGuard)
   public facebookLoginCallback(@User() user: UserEntity): string {
@@ -124,14 +130,12 @@ export class AuthController {
     `;
   }
 
-  @Public()
   @UseGuards(OneloginGuard)
   @Get("/onelogin")
   public oneloginLogin(): void {
     // initiates the OneLogin login flow
   }
 
-  @Public()
   @UseGuards(OneloginGuard)
   @Get("/onelogin/callback")
   public oneloginLoginCallback(@User() user: UserEntity): string {
