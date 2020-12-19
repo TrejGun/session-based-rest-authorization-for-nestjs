@@ -67,7 +67,7 @@
   },
   "license": "MIT",
   "main": "./dist/index.js",
-  "name": "session-based-rest-authorization-for-nestjs",
+  "name": "@trejgun/session-based-rest-authorization-for-nestjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/TrejGun/session-based-rest-authorization-for-nestjs"
