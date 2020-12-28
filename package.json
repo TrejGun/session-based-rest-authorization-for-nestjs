@@ -39,7 +39,7 @@
     "@types/jest": "26.0.19",
     "@types/node": "14.14.16",
     "@types/node-rsa": "1.0.0",
-    "@types/passport": "1.0.4",
+    "@types/passport": "1.0.5",
     "@types/passport-facebook": "2.1.10",
     "@types/passport-google-oauth": "1.0.41",
     "@types/passport-local": "1.0.33",
