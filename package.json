@@ -34,7 +34,7 @@
     "@nestjs/testing": "7.6.5",
     "@trejgun/eslint-config": "0.0.16",
     "@types/connect-redis": "0.0.16",
-    "@types/express": "4.17.9",
+    "@types/express": "4.17.10",
     "@types/express-session": "1.17.3",
     "@types/jest": "26.0.20",
     "@types/node": "14.14.20",
