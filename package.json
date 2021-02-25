@@ -24,7 +24,7 @@
     "passport-local": "1.0.0",
     "pg": "8.5.1",
     "redis": "3.0.2",
-    "rxjs": "6.6.3",
+    "rxjs": "6.6.6",
     "swagger-ui-express": "4.1.6",
     "typeorm": "0.2.31",
     "typeorm-naming-strategies": "2.0.0"
