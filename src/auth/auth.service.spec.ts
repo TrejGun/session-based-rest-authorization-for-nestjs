@@ -9,7 +9,6 @@ import {OneloginStrategyFactory} from "./onelogin.factory";
 import {SessionSerializer} from "./session.serializer";
 import {TypeOrmConfigService} from "../typeorm.options";
 
-
 describe("AuthService", () => {
   let servcontrollerce: AuthController;
 

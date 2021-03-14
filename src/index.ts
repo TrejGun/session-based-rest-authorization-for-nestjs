@@ -7,11 +7,16 @@ import passport from "passport";
 import {AppModule} from "./app.module";
 import {sessionMiddleware} from "./common/middlewares/session";
 
-
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  app.use(sessionMiddleware());
+  app.use(
+    sessionMiddleware({
+      url: process.env.REDIS_URL,
+      secret: process.env.PASSWORD_SECRET_KEY,
+      name: "test",
+    }),
+  );
 
   app.use(passport.initialize());
   app.use(passport.session());

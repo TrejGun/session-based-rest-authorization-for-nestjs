@@ -1,6 +1,5 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-
 export class AddUserTable1562222612033 implements MigrationInterface {
   public tableName = "test.user";
 

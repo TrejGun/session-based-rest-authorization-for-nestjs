@@ -4,7 +4,6 @@ import {UserService} from "./user.service";
 import {UserEntity} from "./user.entity";
 import ormconfig from "../ormconfig";
 
-
 describe("UserService", () => {
   let service: UserService;
 

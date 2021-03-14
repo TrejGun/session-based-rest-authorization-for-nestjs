@@ -1,6 +1,5 @@
 import {config} from "dotenv";
 
-
 config();
 
 declare global {
@@ -18,6 +17,7 @@ declare global {
 
       // SESSION
       SESSION_SECRET_KEY: string;
+      PASSWORD_SECRET_KEY: string;
 
       // AUTH
       GOOGLE_CLIENT_ID: string;

@@ -1,6 +1,5 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-
 export class AddTsdSchema1561991006215 implements MigrationInterface {
   public schemaName = "test";
 

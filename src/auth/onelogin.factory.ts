@@ -3,7 +3,6 @@ import {Issuer} from "openid-client";
 import {UserService} from "../user/user.service";
 import {OneloginStrategy} from "./strategies";
 
-
 export const OneloginStrategyFactory = {
   provide: "OneloginStrategy",
   useFactory: async (userService: UserService): Promise<OneloginStrategy> => {

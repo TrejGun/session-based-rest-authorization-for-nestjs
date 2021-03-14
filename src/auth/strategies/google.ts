@@ -18,10 +18,16 @@ export class GoogleStrategy extends PassportStrategy(OAuth2Strategy, "google") {
   }
 
   public async validate(_accessToken: string, _refreshToken: string, profile: Profile): Promise<UserEntity> {
-    const userEntity = await this.userService.findOne({email: profile.emails![0].value});
+    if (!profile.emails) {
+      throw new UnauthorizedException();
+    }
+
+    const userEntity = await this.userService.findOne({email: profile.emails[0].value});
+
     if (userEntity) {
       return userEntity;
     }
+
     throw new UnauthorizedException();
   }
 }
