@@ -1,4 +1,4 @@
-import {CanActivate, ExecutionContext, Injectable} from "@nestjs/common";
+import {CanActivate, ExecutionContext, Injectable, UnauthorizedException} from "@nestjs/common";
 import {AuthGuard} from "@nestjs/passport";
 
 @Injectable()
@@ -10,10 +10,11 @@ export class OneloginGuard extends AuthGuard("onelogin") implements CanActivate 
     return result;
   }
 
-  public handleRequest<UserEntity>(err: Error, user: UserEntity): UserEntity {
-    if (err) {
-      throw err;
+  public handleRequest<UserEntity>(e: Error, userEntity: UserEntity): UserEntity {
+    if (e) {
+      throw new UnauthorizedException(e.message);
     }
-    return user;
+
+    return userEntity;
   }
 }

@@ -1,7 +1,7 @@
 import {createHash} from "crypto";
-import {Repository, FindConditions} from "typeorm";
+import {FindConditions, Repository} from "typeorm";
 
-import {Injectable, ConflictException} from "@nestjs/common";
+import {ConflictException, Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 
 import {UserEntity} from "./user.entity";
@@ -48,7 +48,7 @@ export class UserService {
     return user;
   }
 
-  public createPasswordHash(password: string, salt: string): string {
+  private createPasswordHash(password: string, salt: string): string {
     return createHash("sha256").update(password).update(salt).digest("hex");
   }
 }
