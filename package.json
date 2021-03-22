@@ -4,10 +4,10 @@
     "name": "TrejGun"
   },
   "dependencies": {
-    "@nestjs/common": "7.6.14",
-    "@nestjs/core": "7.6.14",
+    "@nestjs/common": "7.6.15",
+    "@nestjs/core": "7.6.15",
     "@nestjs/passport": "7.1.5",
-    "@nestjs/platform-express": "7.6.14",
+    "@nestjs/platform-express": "7.6.15",
     "@nestjs/swagger": "4.8.0",
     "@nestjs/typeorm": "7.1.5",
     "class-transformer": "0.4.0",
@@ -31,7 +31,7 @@
   },
   "description": "session based authorization for nest.js",
   "devDependencies": {
-    "@nestjs/testing": "7.6.14",
+    "@nestjs/testing": "7.6.15",
     "@trejgun/eslint-config": "0.1.4",
     "@types/connect-redis": "0.0.16",
     "@types/express": "4.17.11",
