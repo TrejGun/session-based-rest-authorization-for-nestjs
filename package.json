@@ -37,7 +37,7 @@
     "@types/express": "4.17.11",
     "@types/express-session": "1.17.3",
     "@types/jest": "26.0.22",
-    "@types/node": "14.14.38",
+    "@types/node": "14.14.39",
     "@types/node-rsa": "1.1.0",
     "@types/passport": "1.0.6",
     "@types/passport-facebook": "2.1.10",
